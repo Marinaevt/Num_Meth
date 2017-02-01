@@ -1,0 +1,7 @@
+function root = newton(f, df, x0, eps)
+root = x0 - f(x0) / df(x0);
+while abs(old_root - root) > eps
+    x0 = root;
+    old_root = root;
+    root = t - f(t) / df(t);
+end
