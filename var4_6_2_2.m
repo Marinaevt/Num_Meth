@@ -1,12 +1,10 @@
 n = 35;
-A1 = zeros(1, n + 1) + 220;
-A1(1) = 1;
-A2 = zeros(1, n) + 22; %вычитаем номер диагонали, считая главную 0 и прибавляем 1 на индекс
-A2(1) = 2;
-A3 = zeros(1, n - 3) + 2; %вычитаем номер диагонали, считая главную 0 и прибавляем 1 на индекс
-A3(1) = 5;
-A = zeros(n, n);
 b = zeros(n, 1);
+
+Ad = [1, 2, 5];
+Aa = [220, 22, 2];
+
+A = zeros(n, n);
 for i = 1:n
     for j = 1:n
         if j == i
@@ -35,16 +33,15 @@ while flag == 0
 %         for j = 1:i-1
 %            s1 = s1 + A(i, j)*xn(j);
 %         end
-        if i + 1 < numel(A2) - 1
-            s2 = s2 + A2(i + 1)*x(A2(1) + (i - 1));
-        end
-        if i + 1 < numel(A3) - 1
-            s2 = s2 + A3(i + 1)*x(A3(1) + (i - 1));
+        for j = 2:numel(Ad)
+            if i + 1 < n - Ad(j) + 1
+                s2 = s2 + Aa(j)*x(Ad(j) + (i - 1));
+            end
         end
 %         for j = i+1:n
 %             s2 = s2 + A(i, j)*x(j);
 %         end
-        xn(i) = (b(i) - s1 - s2) / A1(i + 1);
+        xn(i) = (b(i) - s1 - s2) / Aa(1);
         
     end
     if sqrt(sum((xn - x).^2)) <= eps
