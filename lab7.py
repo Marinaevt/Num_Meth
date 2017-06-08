@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import division, absolute_import, print_function
 from math import sqrt
 import numpy as np
 
@@ -19,11 +21,11 @@ def seidel(A, b, x0, eps, maxiter = 100):
     return x
 
 
-
-A = [[4.95, 1.12, 2.9, 0.66], [8.91, 19.9, -4.0, 6.93], [-2.97, 2.2, -5.8, 0], [5.94, 1.3, 10.5, 17.82]]
-b = [-3.41, 50.33, 19.49, -45.88]
-x0 = [0 for _ in range(len(A))]
-x1 = seidel(A, b, x0, 1e-10)
-#x2 = np.linalg.solve(A, b)
-#print(x1 - x2)
-print(x1)
+if __name__ == "__main__":
+    A = [[4.95, 1.12, 2.9, 0.66], [8.91, 19.9, -4.0, 6.93], [-2.97, 2.2, -5.8, 0], [5.94, 1.3, 10.5, 17.82]]
+    b = [-3.41, 50.33, 19.49, -45.88]
+    x0 = [0 for _ in range(len(A))]
+    x1 = seidel(A, b, x0, 1e-10)
+    #x2 = np.linalg.solve(A, b)
+    #print(x1 - x2)
+    print(x1)
